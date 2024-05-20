@@ -1,0 +1,41 @@
+name: tf-sub
+services:
+  app:
+    # environment:
+    #   - DJANGO_SETTINGS_MODULE=src.project.settings
+    #   - STRIPE_PUBLIC_KEY=pk_test_51PGICiLu0RXE0K2Hb12F59XdAEZvXEjYF3Zb7EWk6YX7teV02MVkmHotJku8nnKfsgcISwTkUv6ZG2HQSkyI9La300af530rYL
+    #   - STRIPE_SECRET_KEY=sk_test_51PGICiLu0RXE0K2H9teA9hCkaQWKJxVS6HMqbdQ1JvHkwxM0SKjXj93cShmCieMiymsFleuYJpGFUgmTK6apsJG400h3LV99oc
+    #   - DJSTRIPE_TEST_WEBHOOK_SECRET=whsec_9c8c95ea17bee1475691896f03f003b65890010ed7512c5ae6a6be90ae5853fd
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8005:8000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16.2-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=tf-sub-db
+      - POSTGRES_USER=tf-dev
+      - POSTGRES_PASSWORD=tf-dev
+    ports:
+      - 8007:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # stripe:
+  #   image: stripe/stripe-cli:v1.7.4
+  #   command: listen --forward-to http://web:8000/djstripe/webhook/
+  #   depends_on:
+  #     - app
+  #   environment:
+  #     - STRIPE_API_KEY=sk_test_51PGICiLu0RXE0K2H9teA9hCkaQWKJxVS6HMqbdQ1JvHkwxM0SKjXj93cShmCieMiymsFleuYJpGFUgmTK6apsJG400h3LV99oc
+  #     - STRIPE_DEVICE_NAME=djstripe_docker
+
+volumes:
+  postgres_data:

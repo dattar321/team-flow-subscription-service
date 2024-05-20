@@ -49,3 +49,18 @@ test-cover-html: test
 
 .PHONY: update
 update: install migrate install-pre-commit ;
+.PHONY: up
+up:
+	docker compose up --build
+
+.PHONY: up-d
+up-d:
+	docker compose up -d
+
+.PHONY: down
+down: 
+	docker compose down
+
+.PHONY: du
+du:
+	docker compose down; docker compose up --build
