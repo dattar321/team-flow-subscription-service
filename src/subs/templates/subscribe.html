@@ -15,7 +15,7 @@
 <!--        Show product details-->
       <div class="product">
         <div class="description">
-          <h3>Starter - Monthly tennis ball delivery 🎾</h3>
+          <h3>Starter - pro</h3>
           <h5>$20.00 / month</h5>
         </div>
       </div>
@@ -25,9 +25,23 @@
           {% csrf_token %}
 
         <!-- Add a hidden field with the lookup_key of your stripe Price -->
-        <input type="hidden" name="price_lookup_key" value="standard_monthly" />
-        <button id="checkout-and-portal-button" type="submit">Checkout</button>
+        <input type="hidden" name="product_id" value="prod_Q942PDhLs8Okau" />
+        <button id="checkout-and-portal-button" type="submit">Checkout 1 </button>
       </form>
+      <div class="product">
+        <div class="description">
+          <h3>Starter - pro max</h3>
+          <h5>$30.00 / month</h5>
+        </div>
+      </div>
+
+      <form class="checkout-form" action="{%  url 'create-checkout-session' %}" method="POST">
+        {% csrf_token %}
+
+      <!-- Add a hidden field with the lookup_key of your stripe Price -->
+      <input type="hidden" name="product_id" value="prod_Q96BvyJyT8HymN" />
+      <button id="checkout-and-portal-button" type="submit">Checkout 2 </button>
+    </form>
     </section>
   </body>
 </html>
