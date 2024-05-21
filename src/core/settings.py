@@ -1,14 +1,17 @@
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+_w@q-el=f!p785-wk*jeupb!boh)^fe#=x1$zbx#7dwi%5i-^'
+SECRET_KEY = 'django-insecure-0hu_f_p12j3!_$9fuoq5s0np$f&8p_sfb47j+^@e=0+*w#n7s%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -25,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'src.subs',
 ]
 
 MIDDLEWARE = [
@@ -37,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'src.project.urls'
+ROOT_URLCONF = 'src.core.urls'
 
 TEMPLATES = [
     {
@@ -55,7 +59,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'src.project.wsgi.application'
+WSGI_APPLICATION = 'src.core.wsgi.application'
 
 
 # Database
@@ -73,6 +77,7 @@ DATABASES = {
         'CONN_MAX_AGE': 0,
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -109,6 +114,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
